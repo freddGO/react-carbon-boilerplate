@@ -1,1 +1,7 @@
 @import 'carbon-components/scss/globals/scss/styles.scss';
+
+@import './content/LandingPage/_landing-page.scss';
+
+.bx--content{
+    padding: 0;
+}

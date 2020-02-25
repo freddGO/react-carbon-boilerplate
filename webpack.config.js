@@ -19,7 +19,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|ico)$/,
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
         loader: 'file-loader?name=public/[name].[hash].[ext]'
       },
       {
