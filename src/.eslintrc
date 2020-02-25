@@ -1,0 +1,44 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb",
+      "airbnb/hooks",
+      "prettier"
+    ],
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "plugins": [
+      "react",
+      "react-hooks",
+      "prettier",
+      "jsx-a11y",
+      "import"
+    ],
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "rules": {
+      // don't force es6 functions to include space before paren
+      "space-before-function-paren": 0,
+  
+      // allow specifying true explicitly for boolean props
+      "react/jsx-boolean-value": 0,
+  
+      // Maximum complexity 12, throw error if is bigger
+      "complexity": ["error", 12],
+  
+      "prettier/prettier": "error",
+  
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "import/no-useless-path-segments": ["error", {
+        "noUselessIndex": false
+      }],
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    }
+  }
+  

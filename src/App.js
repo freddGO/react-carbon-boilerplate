@@ -1,19 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
-import { Button } from 'carbon-components-react';
-import { Content } from 'carbon-components-react/lib/components/UIShell';
+import React, { Component } from "react";
+import "./App.scss";
+import { Content } from "carbon-components-react/lib/components/UIShell";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Header from "./components/header";
+import LandingPage from "./content/LandingPage";
 
-
-function App() {
-  return (
-    <>
+class App extends Component {
+  render() {
+    return (
+      <>
+        <Header />
         <Content>
-            <div> Boilerplate init</div>
-            <Button>Button Test</Button>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+            </Switch>
+          </BrowserRouter>
         </Content>
-    </>  
-  );
+      </>
+    );
+  }
 }
 
 export default App;
