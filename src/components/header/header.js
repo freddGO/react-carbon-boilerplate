@@ -6,10 +6,10 @@ import {
 } from "carbon-components-react/lib/components/UIShell";
 
 const TutorialHeader = () => (
-  <Header aria-label="Carbon Tutorial">
+  <Header aria-label="HSI">
     <SkipToContent />
     <HeaderName to="/" prefix="IBM">
-      Carbon Tutorial
+      | HSI
     </HeaderName>
   </Header>
 );

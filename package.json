@@ -11,6 +11,8 @@
     "carbon-components-react": "^7.9.3",
     "core-js": "^3.6.4",
     "css-loader": "^3.4.2",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1",
     "post-loader": "^2.0.0",
     "prop-types": "^15.7.2",

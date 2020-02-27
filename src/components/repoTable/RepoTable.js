@@ -1,67 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { DataTableSkeleton, Pagination } from "carbon-components-react";
 import RepoTable from "./table";
+
+const fetch = require("node-fetch");
 
 const headers = [
   {
-    key: "name",
-    header: "Name"
+    key: "QRYID",
+    header: "QRYID"
   },
   {
-    key: "createdAt",
-    header: "Created"
+    key: "INVNO",
+    header: "INVNO"
   },
   {
-    key: "updatedAt",
-    header: "Updated"
+    key: "INVDATE",
+    header: "INVDATE"
   },
   {
-    key: "issueCount",
-    header: "Open Issues"
-  },
-  {
-    key: "stars",
-    header: "Stars"
-  },
-  {
-    key: "links",
-    header: "Links"
-  }
-];
-
-const rows = [
-  {
-    id: "1",
-    name: "Repo 1",
-    createdAt: "Date",
-    updatedAt: "Date",
-    issueCount: "123",
-    stars: "456",
-    links: "Links"
-  },
-  {
-    id: "2",
-    name: "Repo 2",
-    createdAt: "Date",
-    updatedAt: "Date",
-    issueCount: "123",
-    stars: "456",
-    links: "Links"
-  },
-  {
-    id: "3",
-    name: "Repo 3",
-    createdAt: "Date",
-    updatedAt: "Date",
-    issueCount: "123",
-    stars: "456",
-    links: "Links"
+    key: "INVAGE",
+    header: "INVAGE"
   }
 ];
 
 const RepoPage = () => {
+  const [rows, setRows] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [firstRowIndex, setFirstRowIndex] = useState(0);
+  const [currentPageSize, setCurrentPageSize] = useState(10);
+
+  useEffect(() => {
+    fetch(`${process.env.API_URL}/database/getInfoFromDatabase`, {
+      method: "post",
+      body: JSON.stringify({
+        numberOfRows: 1000
+      }),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(json => {
+        setRows(json);
+        setTotalItems(json.length);
+        console.log("dot env", rows);
+      });
+  }, [rows]);
+
   return (
     <div>
-      <RepoTable headers={headers} rows={rows} />
+      <>
+        <RepoTable
+          headers={headers}
+          rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
+        />
+        <Pagination
+          totalItems={totalItems}
+          backwardText="Previous page"
+          forwardText="Next page"
+          pageSize={currentPageSize}
+          pageSizes={[5, 10, 15, 25]}
+          itemsPerPageText="Items per page"
+          onChange={({ page, pageSize }) => {
+            if (pageSize !== currentPageSize) {
+              setCurrentPageSize(pageSize);
+            }
+            setFirstRowIndex(pageSize * (page - 1));
+          }}
+        />
+      </>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   DataTable,
   TableContainer,
@@ -15,6 +14,11 @@ import {
 } from "carbon-components-react";
 
 const RepoTable = ({ rows, headers }) => {
+  const getRowDescription = rowId => {
+    const row = rows.find(({ id }) => id === rowId);
+    return row ? row.description : "";
+  };
+
   return (
     <DataTable
       rows={rows}
@@ -27,9 +31,7 @@ const RepoTable = ({ rows, headers }) => {
         getTableProps
       }) => (
         <TableContainer
-          title="Carbon Repositories"
-          description="A collection of public Carbon repositories."
-        >
+title="HSI Tables" description="Table 1">
           <Table {...getTableProps()}>
             <TableHead>
               <TableRow>
@@ -50,7 +52,7 @@ const RepoTable = ({ rows, headers }) => {
                     ))}
                   </TableExpandRow>
                   <TableExpandedRow colSpan={headers.length + 1}>
-                    <p>Row description</p>
+                    <p>{getRowDescription(row.id)}</p>
                   </TableExpandedRow>
                 </React.Fragment>
               ))}
@@ -60,28 +62,6 @@ const RepoTable = ({ rows, headers }) => {
       )}
     />
   );
-};
-
-RepoTable.propTypes = {
-  rows: PropTypes.arrayOf(
-    PropTypes.shape({
-      url: PropTypes.string,
-      name: PropTypes.string,
-      id: PropTypes.string,
-      name: PropTypes.string,
-      createdAt: PropTypes.string,
-      updatedAt: PropTypes.string,
-      issueCount: PropTypes.string,
-      stars: PropTypes.string,
-      links: PropTypes.string
-    })
-  ).isRequired,
-  headers: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string,
-      header: PropTypes.string
-    })
-  ).isRequired
 };
 
 export default RepoTable;
