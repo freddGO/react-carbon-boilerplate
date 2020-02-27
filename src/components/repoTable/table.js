@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   DataTable,
   TableContainer,
@@ -59,6 +60,28 @@ const RepoTable = ({ rows, headers }) => {
       )}
     />
   );
+};
+
+RepoTable.propTypes = {
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string,
+      name: PropTypes.string,
+      id: PropTypes.string,
+      name: PropTypes.string,
+      createdAt: PropTypes.string,
+      updatedAt: PropTypes.string,
+      issueCount: PropTypes.string,
+      stars: PropTypes.string,
+      links: PropTypes.string
+    })
+  ).isRequired,
+  headers: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      header: PropTypes.string
+    })
+  ).isRequired
 };
 
 export default RepoTable;
