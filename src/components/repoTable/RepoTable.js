@@ -30,7 +30,10 @@ const RepoPage = () => {
   const [currentPageSize, setCurrentPageSize] = useState(10);
 
   useEffect(() => {
-    fetch(`${process.env.API_URL}/database/getInfoFromDatabase`, {
+	console.log(process.env.API_URL);
+	const HOST = process.env.API_URL || "http://localhost:9000";
+	console.log(HOST);
+    fetch(`${HOST}/database/getInfoFromDatabase`, {
       method: "post",
       body: JSON.stringify({
         numberOfRows: 1000
@@ -43,7 +46,7 @@ const RepoPage = () => {
         setTotalItems(json.length);
         console.log("dot env", rows);
       });
-  }, [rows]);
+  }, []);
 
   return (
     <div>
