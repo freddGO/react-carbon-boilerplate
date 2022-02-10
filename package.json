@@ -13,7 +13,7 @@
     "css-loader": "^3.4.2",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "post-loader": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
